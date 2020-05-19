@@ -1,0 +1,18 @@
+{
+    "name": "peterkacinec/user_management",
+    "authors": [
+        {
+            "name": "Peter Kacinec",
+            "email": "kacinec.peter@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "extra": {
+        "laravel": {
+            "providers": [
+                "KornerBI\\UserManagement\\UserManagementServiceProvider"
+            ]
+        }
+    }
+}
