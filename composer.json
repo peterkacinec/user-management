@@ -6,7 +6,11 @@
             "email": "kacinec.peter@gmail.com"
         }
     ],
-    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "KornerBI\\UserManagement\\": "src/"
+        }
+    },
     "require": {},
     "extra": {
         "laravel": {
