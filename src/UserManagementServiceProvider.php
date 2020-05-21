@@ -28,5 +28,12 @@ class UserManagementServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__ . '/resources/views', 'user_management');
         $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
         $this->loadTranslationsFrom(__DIR__ . '/resources/lang', 'user_management');
+
+        $this->publishes([
+            __DIR__.'/config/user-management.php' => config_path('user-management.php')
+        ], 'config');
+        $this->publishes([
+            __DIR__ . '/resources/js/components/SimpleTableComponent.vue' => resource_path('js/components/SimpleTableComponent.vue')
+        ], 'vue-components');
     }
 }

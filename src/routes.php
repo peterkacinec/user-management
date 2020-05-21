@@ -1,5 +1,9 @@
 <?php
-Route::group(['middleware' => ['web']], function () {
+
+Route::group([
+    'prefix' => config('user-management.route-prefix'),
+    'middleware' => ['web', 'auth']
+], function () {
     Route::resources([
         'users'         => 'KornerBI\UserManagement\Controllers\UserController',
         'roles'         => 'KornerBI\UserManagement\Controllers\RoleController',

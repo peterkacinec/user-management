@@ -6,24 +6,13 @@ use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use KornerBI\UserManagement\SimpleTable;
 
 class UserController extends Controller
 {
-    public $service;
-
-    public function index(Request $request)
+    public function index()
     {
         $users = User::all()->toArray();
-        $columns = ['name', 'surname'];
-        $table = new SimpleTable($columns, $users);
-
-//        $res = $this->service->getData($request, UserHelper::class, User::class);
-//
-//        if ($request->ajax()) {
-//            return response()->json($res);
-//        }
-//        return view('user_management::admin.users.index', $res);
+        return view ('user_management::users.index', ['data' => $users]);
     }
 
     public function create()

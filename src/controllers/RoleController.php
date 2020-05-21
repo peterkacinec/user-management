@@ -8,21 +8,10 @@ use Illuminate\Http\Request;
 
 class RoleController extends Controller
 {
-    public $service;
-
-//    public function __construct(TableService $service)
-//    {
-//        $this->service = $service;
-//    }
-
-    public function index(Request $request)
+    public function index()
     {
-        $res = $this->service->getData($request, RoleHelper::class, Role::class);
-
-        if ($request->ajax()) {
-            return response()->json($res);
-        }
-        return view('user_management::roles.index', $res);
+        $roles = Role::all()->toArray();
+        return view ('user_management::roles.index', ['data' => $roles]);
     }
 
     public function create()
