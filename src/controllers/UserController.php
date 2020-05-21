@@ -3,34 +3,33 @@
 namespace KornerBI\UserManagement\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Http\Helpers\UserHelper;
-use App\Services\TableService;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use KornerBI\UserManagement\SimpleTable;
 
 class UserController extends Controller
 {
     public $service;
 
-    public function __construct(TableService $service)
-    {
-        $this->service = $service;
-    }
-
     public function index(Request $request)
     {
-        $res = $this->service->getData($request, UserHelper::class, User::class);
+        $users = User::all()->toArray();
+        $columns = ['name', 'surname'];
+        $table = new SimpleTable($columns, $users);
 
-        if ($request->ajax()) {
-            return response()->json($res);
-        }
-        return view('admin.users.index', $res);
+//        $res = $this->service->getData($request, UserHelper::class, User::class);
+//
+//        if ($request->ajax()) {
+//            return response()->json($res);
+//        }
+//        return view('user_management::admin.users.index', $res);
     }
 
     public function create()
     {
         $user = new User();
-        return view('admin.users.create', ['user' => $user]);
+        return view('user_management::users.create', ['user' => $user]);
     }
 
     /**
@@ -47,31 +46,34 @@ class UserController extends Controller
             $user->password = request('password') ? bcrypt(request('password')) : $user->password;
 
             if ($user->save()) {
+                $user->roles()->sync(request('roles'));
                 return redirect()
-                    ->route('admin.users.show', $user->id)
-                    ->withSuccess(__('user.Created successfully'));
+                    ->route('users.show', $user->id)
+                    ->withSuccess(__('user_management::general.Created successfully'));
             }
         }
         return back()
-            ->withFail(__('general.Update failed'))
+            ->withFail(__('user_management::general.Create failed'))
             ->withErrors($validator)
             ->withInput();
     }
 
     public function show($id)
     {
-        return view('admin.users.show', ['user' => User::findOrFail($id)]);
+        return view('user_management::users.show', ['user' => User::findOrFail($id)]);
     }
 
     public function edit(User $user)
     {
-        return view('admin.users.edit', ['user' => $user]);
+        return view('user_management::users.edit', ['user' => $user]);
     }
 
     public function editProfile(User $user)
     {
-        $this->authorize('is-user', $user);
-        return view('admin.users.editProfile', ['user' => $user]);
+        if(Auth::id() == $user->id) {
+            return view('user_management::users.editProfile', ['user' => $user]);
+        }
+        return abort(403, __('user_management::general.Unauthorized'));
     }
 
     public function update(User $user)
@@ -84,15 +86,16 @@ class UserController extends Controller
             $user->email    = request('email');
             $user->password = request('password') ? bcrypt(request('password')) : $user->password;
             $user->roles()->sync(request('roles'));
+            $user->permissions()->sync(request('permissions'));
 
             if ($user->save()) {
                 return redirect()
-                    ->route('admin.users.show', $user->id)
-                    ->withSuccess(__('general.Updated successfully'));
+                    ->route('users.show', $user->id)
+                    ->withSuccess(__('user_management::general.Updated successfully'));
             }
         }
         return back()
-            ->withFail(__('general.Update failed'))
+            ->withFail(__('user_management::general.Update failed'))
             ->withErrors($validator)
             ->withInput();
     }
@@ -108,12 +111,12 @@ class UserController extends Controller
 
             if ($user->update()) {
                 return redirect()
-                    ->route('admin.users.editProfile', $user->id)
-                    ->withSuccess(__('general.Updated successfully'));
+                    ->route('users.editProfile', $user->id)
+                    ->withSuccess(__('user_management::general.Updated successfully'));
             }
         }
         return back()
-            ->withFail(__('general.Update failed'))
+            ->withFail(__('user_management::general.Update failed'))
             ->withErrors($validator)
             ->withInput();
     }
@@ -124,15 +127,15 @@ class UserController extends Controller
         if ($user->delete())
         {
             return redirect()
-                ->route('admin.users.index')
-                ->withSuccess(__('user.Deleted successfully', [
+                ->route('users.index')
+                ->withSuccess(__('user_management::general.Deleted successfully', [
                     'name'      => $user->name,
                     'surname'   => $user->surname,
                     'id'        => $user->id
                 ]));
         }
         return back()
-            ->withFail(__('user.Deleted failed', [
+            ->withFail(__('user_management::general.Delete failed', [
                 'name'      => $user->name,
                 'surname'   => $user->surname,
                 'id'        => $user->id

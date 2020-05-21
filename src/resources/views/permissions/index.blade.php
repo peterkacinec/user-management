@@ -1,7 +1,7 @@
 @php
     $columns = [
         [
-            'label' => __('user_management::user.Name'),
+            'label' => __('user_management::permission.Name'),
             'key' => 'name',
             'type' => 'text',
             'settings' => [
@@ -10,26 +10,8 @@
             ]
         ],
         [
-            'label' => __('user_management::user.Surname'),
-            'key' => 'surname',
-            'type' => 'text',
-            'settings' => [
-                'searchable' => true,
-                'placeholder' => __('table-component.settings.placeholder')
-            ]
-        ],
-        [
-            'label' => __('user_management::user.Email'),
-            'key' => 'email',
-            'type' => 'text',
-            'settings' => [
-                'searchable' => true,
-                'placeholder' => __('table-component.settings.placeholder')
-            ]
-        ],
-        [
-            'label' => __('user_management::user.Roles'),
-            'key' => 'roles',
+            'label' => __('user_management::permission.Slug'),
+            'key' => 'slug',
             'type' => 'text',
             'settings' => [
                 'searchable' => true,
@@ -55,7 +37,7 @@
             'class' => 'btn btn-primary btn-sm',
             'action' => null,
             'url' => [
-                'link' => '/admin/users/',
+                'link' => '/admin/roles/',
                 'attribute' => 'id',
             ],
             'condition' => true
@@ -65,10 +47,10 @@
 @extends ('layouts.app')
 @section ('content')
     <div class="card">
-        <div class="card-header">{{__('user_management::user.User list')}}</div>
+        <div class="card-header">{{__('user_management::permission.Permission list')}}</div>
         <div class="card-body">
-            <a role="button" class="btn btn-primary btn-sm" href="{{ route('users.create') }}">{{__('general.Create')}}</a>
-            <simple-table-component config="{{ json_encode($result) }}"></simple-table-component>
+            <a role="button" class="btn btn-primary btn-sm" href="{{ route('permissions.create') }}">{{__('user_management::general.Create')}}</a>
+            <table-component config="{{ json_encode($result) }}"></table-component>
         </div>
     </div>
 @endsection

@@ -8,14 +8,16 @@
     ],
     "autoload": {
         "psr-4": {
-            "KornerBI\\UserManagement\\": "src/"
+            "KornerBI\\UserManagement\\": "src/",
+            "KornerBI\\UserManagement\\Database\\Seeds\\": "database/seeds/"
         }
     },
     "require": {},
     "extra": {
         "laravel": {
             "providers": [
-                "KornerBI\\UserManagement\\UserManagementServiceProvider"
+                "KornerBI\\UserManagement\\UserManagementServiceProvider",
+                "KornerBI\\UserManagement\\Providers\\PermissionsServiceProvider"
             ]
         }
     }

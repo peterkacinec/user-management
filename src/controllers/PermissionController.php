@@ -3,13 +3,13 @@
 namespace KornerBI\UserManagement\Controllers;
 
 use App\Http\Controllers\Controller;
-use KornerBI\UserManagement\Models\Role;
+use KornerBI\UserManagement\Models\Permission;
 use Illuminate\Http\Request;
 
-class RoleController extends Controller
+class PermissionController extends Controller
 {
     public $service;
-
+//
 //    public function __construct(TableService $service)
 //    {
 //        $this->service = $service;
@@ -22,12 +22,12 @@ class RoleController extends Controller
         if ($request->ajax()) {
             return response()->json($res);
         }
-        return view('user_management::roles.index', $res);
+        return view('user_management::permissions.index', $res);
     }
 
     public function create()
     {
-        return view('user_management::roles.create');
+        return view('user_management::permissions.create');
     }
 
     /**
@@ -40,11 +40,11 @@ class RoleController extends Controller
     {
         $validator = $this->validator(request()->all());
         if (!$validator->fails()) {
-            $role = new Role($validator->validated());
+            $permission = new Permission($validator->validated());
 
-            if ($role->save()) {
+            if ($permission->save()) {
                 return redirect()
-                    ->route('roles.show', $role->id)
+                    ->route('permissions.show', $permission->id)
                     ->withSuccess(__('user_management::general.Created successfully'));
             }
         }
@@ -56,20 +56,20 @@ class RoleController extends Controller
 
     public function show($id)
     {
-        return view('user_management::roles.show', ['role' => Role::findOrFail($id)]);
+        return view('user_management::permissions.show', ['permission' => Permission::findOrFail($id)]);
     }
 
-    public function edit(Role $role)
+    public function edit(Permission $permission)
     {
-        return view('user_management::roles.edit', ['role' => $role]);
+        return view('user_management::permissions.edit', ['permission' => $permission]);
     }
 
-    public function update(Role $role)
+    public function update(Permission $permission)
     {
         $validator = $this->validator(request()->all());
-        if (!$validator->fails() && $role->update($validator->validated())) {
+        if (!$validator->fails() && $permission->update($validator->validated())) {
             return redirect()
-                ->route('roles.show', $role->id)
+                ->route('permissions.show', $permission->id)
                 ->withSuccess(__('user_management::general.Updated successfully'));
         }
         return back()
@@ -79,14 +79,14 @@ class RoleController extends Controller
     }
 
     public function destroy($id) {
-        $role = Role::findOrFail($id);
+        $permission = Permission::findOrFail($id);
 
-        if ($role->delete()) {
+        if ($permission->delete()) {
             return redirect()
-                ->route('roles.index')
+                ->route('permissions.index')
                 ->withSuccess(__('user_management::general.Deleted successfully', [
-                    'name' => $role->name,
-                    'id' => $role->id
+                    'name' => $permission->name,
+                    'id' => $permission->id
                 ]));
         }
         return back()

@@ -1,20 +1,27 @@
 <?php
 
-namespace App;
+namespace KornerBI\UserManagement\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
 class Permission extends Model
 {
-    public function roles() {
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'name', 'slug'
+    ];
 
+    public function roles()
+    {
         return $this->belongsToMany(Role::class,'roles_permissions');
-
     }
 
-    public function users() {
-
+    public function users()
+    {
         return $this->belongsToMany(User::class,'users_permissions');
-
     }
 }
