@@ -12,6 +12,15 @@
             "KornerBI\\UserManagement\\Database\\Seeds\\": "database/seeds/"
         }
     },
+    "require": {
+        "peterkacinec/simple-table": "*"
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/peterkacinec/simple-table"
+        }
+    ],
     "extra": {
         "laravel": {
             "providers": [
