@@ -1,5 +1,5 @@
 <div class="form-group row">
-    <label for="name" class="col-sm-2 col-form-label">{{__('user_management::permission.Name')}}</label>
+    <label for="name" class="col-sm-2 col-form-label">{{__('user-management::permission.Name')}}</label>
     <div class="col-sm-10">
         <input class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" type="text" name="name" id="name" value="{{ old('name', $permission->name ?? null) }}" required/>
         @error('name')
@@ -8,7 +8,7 @@
     </div>
 </div>
 <div class="form-group row">
-    <label for="slug" class="col-sm-2 col-form-label">{{__('user_management::permission.Slug')}}</label>
+    <label for="slug" class="col-sm-2 col-form-label">{{__('user-management::permission.Slug')}}</label>
     <div class="col-sm-10">
         <input class="form-control {{ $errors->has('slug') ? 'is-invalid' : '' }}" type="text" name="slug" id="slug" value="{{ old('slug', $permission->slug ?? null) }}" required/>
         @error('slug')

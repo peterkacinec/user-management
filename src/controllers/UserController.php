@@ -12,13 +12,13 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all()->toArray();
-        return view ('user_management::users.index', ['data' => $users]);
+        return view ('user-management::users.index', ['data' => $users]);
     }
 
     public function create()
     {
         $user = new User();
-        return view('user_management::users.create', ['user' => $user]);
+        return view('user-management::users.create', ['user' => $user]);
     }
 
     /**
@@ -38,31 +38,31 @@ class UserController extends Controller
                 $user->roles()->sync(request('roles'));
                 return redirect()
                     ->route('users.show', $user->id)
-                    ->withSuccess(__('user_management::general.Created successfully'));
+                    ->withSuccess(__('user-management::general.Created successfully'));
             }
         }
         return back()
-            ->withFail(__('user_management::general.Create failed'))
+            ->withFail(__('user-management::general.Create failed'))
             ->withErrors($validator)
             ->withInput();
     }
 
     public function show($id)
     {
-        return view('user_management::users.show', ['user' => User::findOrFail($id)]);
+        return view('user-management::users.show', ['user' => User::findOrFail($id)]);
     }
 
     public function edit(User $user)
     {
-        return view('user_management::users.edit', ['user' => $user]);
+        return view('user-management::users.edit', ['user' => $user]);
     }
 
     public function editProfile(User $user)
     {
         if(Auth::id() == $user->id) {
-            return view('user_management::users.editProfile', ['user' => $user]);
+            return view('user-management::users.editProfile', ['user' => $user]);
         }
-        return abort(403, __('user_management::general.Unauthorized'));
+        return abort(403, __('user-management::general.Unauthorized'));
     }
 
     public function update(User $user)
@@ -80,11 +80,11 @@ class UserController extends Controller
             if ($user->save()) {
                 return redirect()
                     ->route('users.show', $user->id)
-                    ->withSuccess(__('user_management::general.Updated successfully'));
+                    ->withSuccess(__('user-management::general.Updated successfully'));
             }
         }
         return back()
-            ->withFail(__('user_management::general.Update failed'))
+            ->withFail(__('user-management::general.Update failed'))
             ->withErrors($validator)
             ->withInput();
     }
@@ -101,11 +101,11 @@ class UserController extends Controller
             if ($user->update()) {
                 return redirect()
                     ->route('users.editProfile', $user->id)
-                    ->withSuccess(__('user_management::general.Updated successfully'));
+                    ->withSuccess(__('user-management::general.Updated successfully'));
             }
         }
         return back()
-            ->withFail(__('user_management::general.Update failed'))
+            ->withFail(__('user-management::general.Update failed'))
             ->withErrors($validator)
             ->withInput();
     }
@@ -117,14 +117,14 @@ class UserController extends Controller
         {
             return redirect()
                 ->route('users.index')
-                ->withSuccess(__('user_management::general.Deleted successfully', [
+                ->withSuccess(__('user-management::general.Deleted successfully', [
                     'name'      => $user->name,
                     'surname'   => $user->surname,
                     'id'        => $user->id
                 ]));
         }
         return back()
-            ->withFail(__('user_management::general.Delete failed', [
+            ->withFail(__('user-management::general.Delete failed', [
                 'name'      => $user->name,
                 'surname'   => $user->surname,
                 'id'        => $user->id

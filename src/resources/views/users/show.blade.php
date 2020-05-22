@@ -4,33 +4,33 @@
         <form action="{{ route('users.destroy', $user->id) }}" method="POST">
             @method('DELETE')
             @csrf
-            <a role="button" class="btn btn-primary btn-sm" href="{{ route('users.edit', $user->id) }}">{{__('user_management::general.Edit')}}</a>
-            <button type="submit" class="btn btn-danger btn-sm">{{__('user_management::general.Delete')}}</button>
+            <a role="button" class="btn btn-primary btn-sm" href="{{ route('users.edit', $user->id) }}">{{__('user-management::general.Edit')}}</a>
+            <button type="submit" class="btn btn-danger btn-sm">{{__('user-management::general.Delete')}}</button>
         </form>
     </div>
     <div class="card">
-        <div class="card-header">{{__('user_management::user.Title')}}</div>
+        <div class="card-header">{{__('user-management::user.Title')}}</div>
         <div class="card-body">
             <div class="form-group row">
-                <label for="name" class="col-sm-2 col-form-label">{{__('user_management::user.Name')}}</label>
+                <label for="name" class="col-sm-2 col-form-label">{{__('user-management::user.Name')}}</label>
                 <div class="col-sm-10">
                     <input class="form-control" type="text" name="name"  value="{{ $user->name }}" disabled/>
                 </div>
             </div>
             <div class="form-group row">
-                <label for="surname" class="col-sm-2 col-form-label">{{__('user_management::user.Surname')}}</label>
+                <label for="surname" class="col-sm-2 col-form-label">{{__('user-management::user.Surname')}}</label>
                 <div class="col-sm-10">
                     <input class="form-control" type="text" name="surname" value="{{ $user->surname }}" disabled/>
                 </div>
             </div>
             <div class="form-group row">
-                <label for="email" class="col-sm-2 col-form-label">{{__('user_management::user.Email')}}</label>
+                <label for="email" class="col-sm-2 col-form-label">{{__('user-management::user.Email')}}</label>
                 <div class="col-sm-10">
                     <input class="form-control" type="text" name="email" value="{{ $user->email }}" disabled/>
                 </div>
             </div>
             <div class="form-group row">
-                <label for="roles" class="col-sm-2 col-form-label">{{__('user_management::user.Roles')}}</label>
+                <label for="roles" class="col-sm-2 col-form-label">{{__('user-management::user.Roles')}}</label>
                 <div class="col-sm-10">
                     <select multiple class="form-control" name="roles[]" id="roles" disabled>
                         @foreach($user->roleList() as $role)
@@ -40,7 +40,7 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="permissions" class="col-sm-2 col-form-label">{{__('user_management::user.Permissions')}}</label>
+                <label for="permissions" class="col-sm-2 col-form-label">{{__('user-management::user.Permissions')}}</label>
                 <div class="col-sm-10">
                     <select multiple class="form-control" name="permissions[]" id="permissions" disabled>
                         @foreach($user->permissionList() as $permission)
@@ -51,13 +51,13 @@
             </div>
 
             <div class="form-group row">
-                <label for="created_at" class="col-sm-2 col-form-label">{{__('user_management::general.Created at')}}</label>
+                <label for="created_at" class="col-sm-2 col-form-label">{{__('user-management::general.Created at')}}</label>
                 <div class="col-sm-10">
                     <input class="form-control" type="text" name="created_at" value="{{ \Carbon\Carbon::parse($user->created_at)->format('d.m.Y H:i:s') }}" disabled/>
                 </div>
             </div>
             <div class="form-group row">
-                <label for="updated_at" class="col-sm-2 col-form-label">{{__('user_management::general.Updated at')}}</label>
+                <label for="updated_at" class="col-sm-2 col-form-label">{{__('user-management::general.Updated at')}}</label>
                 <div class="col-sm-10">
                     <input class="form-control" type="text" name="updated_at" value="{{ \Carbon\Carbon::parse($user->updated_at)->format('d.m.Y H:i:s') }}" disabled/>
                 </div>

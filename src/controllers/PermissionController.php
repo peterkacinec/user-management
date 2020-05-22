@@ -11,12 +11,12 @@ class PermissionController extends Controller
     public function index()
     {
         $permissions = Permission::all()->toArray();
-        return view('user_management::permissions.index', ['data' => $permissions]);
+        return view('user-management::permissions.index', ['data' => $permissions]);
     }
 
     public function create()
     {
-        return view('user_management::permissions.create');
+        return view('user-management::permissions.create');
     }
 
     /**
@@ -34,23 +34,23 @@ class PermissionController extends Controller
             if ($permission->save()) {
                 return redirect()
                     ->route('permissions.show', $permission->id)
-                    ->withSuccess(__('user_management::general.Created successfully'));
+                    ->withSuccess(__('user-management::general.Created successfully'));
             }
         }
         return back()
-            ->withFail(__('user_management::general.Create failed'))
+            ->withFail(__('user-management::general.Create failed'))
             ->withErrors($validator)
             ->withInput();
     }
 
     public function show($id)
     {
-        return view('user_management::permissions.show', ['permission' => Permission::findOrFail($id)]);
+        return view('user-management::permissions.show', ['permission' => Permission::findOrFail($id)]);
     }
 
     public function edit(Permission $permission)
     {
-        return view('user_management::permissions.edit', ['permission' => $permission]);
+        return view('user-management::permissions.edit', ['permission' => $permission]);
     }
 
     public function update(Permission $permission)
@@ -59,10 +59,10 @@ class PermissionController extends Controller
         if (!$validator->fails() && $permission->update($validator->validated())) {
             return redirect()
                 ->route('permissions.show', $permission->id)
-                ->withSuccess(__('user_management::general.Updated successfully'));
+                ->withSuccess(__('user-management::general.Updated successfully'));
         }
         return back()
-            ->withFail(__('user_management::general.Update failed'))
+            ->withFail(__('user-management::general.Update failed'))
             ->withErrors($validator)
             ->withInput();
     }
@@ -73,13 +73,13 @@ class PermissionController extends Controller
         if ($permission->delete()) {
             return redirect()
                 ->route('permissions.index')
-                ->withSuccess(__('user_management::general.Deleted successfully', [
+                ->withSuccess(__('user-management::general.Deleted successfully', [
                     'name' => $permission->name,
                     'id' => $permission->id
                 ]));
         }
         return back()
-            ->withFail(__('user_management::general.Delete failed'));
+            ->withFail(__('user-management::general.Delete failed'));
     }
 
     private function validator(array $all)

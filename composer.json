@@ -12,7 +12,6 @@
             "KornerBI\\UserManagement\\Database\\Seeds\\": "database/seeds/"
         }
     },
-    "require": {},
     "extra": {
         "laravel": {
             "providers": [

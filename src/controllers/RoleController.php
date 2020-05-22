@@ -11,12 +11,12 @@ class RoleController extends Controller
     public function index()
     {
         $roles = Role::all()->toArray();
-        return view ('user_management::roles.index', ['data' => $roles]);
+        return view ('user-management::roles.index', ['data' => $roles]);
     }
 
     public function create()
     {
-        return view('user_management::roles.create');
+        return view('user-management::roles.create');
     }
 
     /**
@@ -34,23 +34,23 @@ class RoleController extends Controller
             if ($role->save()) {
                 return redirect()
                     ->route('roles.show', $role->id)
-                    ->withSuccess(__('user_management::general.Created successfully'));
+                    ->withSuccess(__('user-management::general.Created successfully'));
             }
         }
         return back()
-            ->withFail(__('user_management::general.Create failed'))
+            ->withFail(__('user-management::general.Create failed'))
             ->withErrors($validator)
             ->withInput();
     }
 
     public function show($id)
     {
-        return view('user_management::roles.show', ['role' => Role::findOrFail($id)]);
+        return view('user-management::roles.show', ['role' => Role::findOrFail($id)]);
     }
 
     public function edit(Role $role)
     {
-        return view('user_management::roles.edit', ['role' => $role]);
+        return view('user-management::roles.edit', ['role' => $role]);
     }
 
     public function update(Role $role)
@@ -59,10 +59,10 @@ class RoleController extends Controller
         if (!$validator->fails() && $role->update($validator->validated())) {
             return redirect()
                 ->route('roles.show', $role->id)
-                ->withSuccess(__('user_management::general.Updated successfully'));
+                ->withSuccess(__('user-management::general.Updated successfully'));
         }
         return back()
-            ->withFail(__('user_management::general.Update failed'))
+            ->withFail(__('user-management::general.Update failed'))
             ->withErrors($validator)
             ->withInput();
     }
@@ -73,13 +73,13 @@ class RoleController extends Controller
         if ($role->delete()) {
             return redirect()
                 ->route('roles.index')
-                ->withSuccess(__('user_management::general.Deleted successfully', [
+                ->withSuccess(__('user-management::general.Deleted successfully', [
                     'name' => $role->name,
                     'id' => $role->id
                 ]));
         }
         return back()
-            ->withFail(__('user_management::general.Delete failed'));
+            ->withFail(__('user-management::general.Delete failed'));
     }
 
     private function validator(array $all)
