@@ -34,6 +34,15 @@ V cistej instalaci noveho projektu Laravel treba dodrzat tento postup:
 - publishnute vue componenty treba manualne nalinkovat v subore `resources/js/app.js`
 - spustit prikaz `npm run dev`
 
+Po nainstalovani packagu sa spristupnia nasledovne routy:
+- /users - zoznam pouzivatelov
+- /users/1 - detail pouzivatela s ID=1, iba ak ste spustili seed
+- /users/1/edit - uprava pouzivatela s ID=1
+- /users/create - vytvorenie pouzivatela
+- /users/1/delete - vymazanie pouzivatela s ID=1
+
+To iste plati aj pre routy: `roles` a `permissions`
+
 ## Versioning
 
 We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
