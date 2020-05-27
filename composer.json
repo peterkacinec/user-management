@@ -1,5 +1,7 @@
 {
     "name": "peterkacinec/user-management",
+    "description": "KornerBI user management",
+    "keywords": ["users", "roles", "permissions"],
     "version": "1.0.0",
     "authors": [
         {
@@ -20,7 +22,7 @@
         }
     ],
     "require": {
-        "peterkacinec/simple-table": "^1.0"
+        "peterkacinec/simple-table": "@dev"
     },
     "extra": {
         "laravel": {
@@ -29,5 +31,7 @@
                 "KornerBI\\UserManagement\\Providers\\PermissionsServiceProvider"
             ]
         }
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }

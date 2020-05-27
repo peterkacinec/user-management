@@ -5,7 +5,8 @@
 - doplnit do suboru composer.json
 ```
 "require": {
-    ...
+    ...,
+    "peterkacinec/user-management": "@dev"
 },
 "repositories": [
     {
@@ -19,24 +20,29 @@
 
 ## Nastavenie package
 
+Obrazovky / routy v package funguju po autorizacii. Su urcene pre 
+administratorov do admin rozhrania. Package pre spravne fungovanie
+vyuziva autorizacny midleware laravelu, preto je nevyhnutne mat nainstalovane
+v projekte `composer require laravel/ui` a `php artisan ui vue --auth`
+
 V cistej instalaci noveho projektu Laravel treba dodrzat tento postup:
 
 - `laravel new NazovProjektu`
-- `composer install`
 - `npm install`
+- v `.env` subore nastavit connect na databazu, zadat nazov db, meno, heslo
 - `composer require laravel/ui`
 - `php artisan ui vue --auth`
-- v `.env` subore nastavit connect na databazu, zadat nazov db, meno, heslo
+- `npm run dev` pre vybuildovanie view z larave/ui package
 - pustit migracie a seeds:  `php artisan migrate:refresh && php artisan db:seed --class=KornerBI\\UserManagement\\Database\\Seeds\\DatabaseSeeder`
-- do `app/User.php` modelu doplnit manualne `HasPermissionsTrait`
+- do `app/User.php` modelu doplnit manualne `use KornerBI\UserManagement\Permissions\HasPermissionsTrait;` a v class User tiez `use HasPermissionsTrait;`
 - publishnut config file z package: `php artisan vendor:publish --provider="KornerBI\UserManagement\UserManagementServiceProvider" --tag="config"`
-- publishnut vue componenty z package: `php artisan vendor:publish --provider="KornerBI\UserManagement\UserManagementServiceProvider" --tag="vue-components"`
-- publishnute vue componenty treba manualne nalinkovat v subore `resources/js/app.js`
+- spolu s user-management package sa nainstaluje aj zavislost na simple-table package, co je vlastne iba vue komponenta pre zobrazovanie zoznamu udajov.
+Komponentu je potrebne manualne nalinkovat v subore `app.js`
 - spustit prikaz `npm run dev`
 
 Po nainstalovani packagu sa spristupnia nasledovne routy:
 - /users - zoznam pouzivatelov
-- /users/1 - detail pouzivatela s ID=1, iba ak ste spustili seed
+- /users/1 - detail pouzivatela s ID=1
 - /users/1/edit - uprava pouzivatela s ID=1
 - /users/create - vytvorenie pouzivatela
 - /users/1/delete - vymazanie pouzivatela s ID=1
