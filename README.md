@@ -37,8 +37,8 @@ V cistej instalaci noveho projektu Laravel treba dodrzat tento postup:
 - do `app/User.php` modelu doplnit manualne `use KornerBI\UserManagement\Permissions\HasPermissionsTrait;` a v class User tiez `use HasPermissionsTrait;`
 - publishnut config file z package: `php artisan vendor:publish --provider="KornerBI\UserManagement\UserManagementServiceProvider" --tag="config"`
 - spolu s user-management package sa nainstaluje aj zavislost na simple-table package, co je vlastne iba vue komponenta pre zobrazovanie zoznamu udajov.
-Komponentu je potrebne manualne nalinkovat v subore `app.js`
-- spustit prikaz `npm run dev`
+Komponentu je potrebne manualne nalinkovat pridanim riadku `Vue.component('simple-table-component', require('../../vendor/peterkacinec/simple-table/src/resources/js/components/SimpleTableComponent').default);` v subore `resources/js/app.js`
+- spustit prikaz `npm run dev` alebo `npm run watch`
 
 Po nainstalovani packagu sa spristupnia nasledovne routy:
 - /users - zoznam pouzivatelov

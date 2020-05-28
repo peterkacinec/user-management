@@ -3,6 +3,7 @@
 namespace KornerBI\UserManagement;
 
 use Illuminate\Support\ServiceProvider;
+use KornerBI\UserManagement\Commands\CreateUser;
 
 class UserManagementServiceProvider extends ServiceProvider
 {
@@ -23,6 +24,7 @@ class UserManagementServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $this->commands([CreateUser::class]);
         $this->loadRoutesFrom(__DIR__ . '/routes.php');
         $this->loadViewsFrom(__DIR__ . '/resources/views', 'user-management');
         $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
