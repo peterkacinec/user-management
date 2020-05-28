@@ -36,6 +36,7 @@ class UserController extends Controller
 
             if ($user->save()) {
                 $user->roles()->sync(request('roles'));
+                $user->permissions()->sync(request('permissions'));
                 return redirect()
                     ->route('users.show', $user->id)
                     ->withSuccess(__('user-management::general.Created successfully'));

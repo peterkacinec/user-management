@@ -34,7 +34,7 @@ V cistej instalaci noveho projektu Laravel treba dodrzat tento postup:
 - `php artisan ui vue --auth`
 - `npm run dev` pre vybuildovanie view z larave/ui package
 - pustit migracie a seeds:  `php artisan migrate:refresh && php artisan db:seed --class=KornerBI\\UserManagement\\Database\\Seeds\\DatabaseSeeder`
-- do `app/User.php` modelu doplnit manualne `use KornerBI\UserManagement\Permissions\HasPermissionsTrait;` a v class User tiez `use HasPermissionsTrait;`
+- do `app/User.php` modelu doplnit manualne `use KornerBI\UserManagement\Permissions\HasPermissionsTrait;` a v class User tiez `use HasPermissionsTrait;` a do pola `$fillable` doplnit atribut `surname`
 - publishnut config file z package: `php artisan vendor:publish --provider="KornerBI\UserManagement\UserManagementServiceProvider" --tag="config"`
 - spolu s user-management package sa nainstaluje aj zavislost na simple-table package, co je vlastne iba vue komponenta pre zobrazovanie zoznamu udajov.
 Komponentu je potrebne manualne nalinkovat pridanim riadku `Vue.component('simple-table-component', require('../../vendor/peterkacinec/simple-table/src/resources/js/components/SimpleTableComponent').default);` v subore `resources/js/app.js`
