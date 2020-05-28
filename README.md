@@ -39,6 +39,7 @@ V cistej instalaci noveho projektu Laravel treba dodrzat tento postup:
 - spolu s user-management package sa nainstaluje aj zavislost na simple-table package, co je vlastne iba vue komponenta pre zobrazovanie zoznamu udajov.
 Komponentu je potrebne manualne nalinkovat pridanim riadku `Vue.component('simple-table-component', require('../../vendor/peterkacinec/simple-table/src/resources/js/components/SimpleTableComponent').default);` v subore `resources/js/app.js`
 - spustit prikaz `npm run dev` alebo `npm run watch`
+- `php artisan user:create` prikaz pre vytvorenie testovacieho usera
 
 Po nainstalovani packagu sa spristupnia nasledovne routy:
 - /users - zoznam pouzivatelov
