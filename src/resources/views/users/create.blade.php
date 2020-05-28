@@ -3,7 +3,7 @@
     <div class="card">
         <div class="card-header">{{__('user-management::user.New user')}}</div>
         <div class="card-body">
-            <form method="post" action="{{route('users.store')}}">
+            <form method="post" action="{{route(config('user-management.route-name').'users.store')}}">
                 @csrf
                 @method('post')
                 @include('user-management::users._form', ['dontRequiredPassword' => false])

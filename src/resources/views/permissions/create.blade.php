@@ -3,7 +3,7 @@
     <div class="card">
         <div class="card-header">{{__('user-management::permission.New role')}}</div>
         <div class="card-body">
-            <form method="post" action="{{route('permissions.store')}}">
+            <form method="post" action="{{route(config('user-management.route-name').'permissions.store')}}">
                 @csrf
                 @method('post')
                 @include('user-management::permissions._form', [])

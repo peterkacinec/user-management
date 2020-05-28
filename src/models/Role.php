@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Role extends Model
 {
+    const ENTITY_ROUTE_PREFIX = '/roles/';
     /**
      * The attributes that are mass assignable.
      *

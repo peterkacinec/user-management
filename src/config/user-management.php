@@ -1,5 +1,6 @@
 <?php
 
 return [
-    'route-prefix' => ''
+    'route-prefix' => '',
+    'route-name' => ''
 ];

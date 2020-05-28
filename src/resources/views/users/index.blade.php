@@ -1,6 +1,4 @@
 @php
-    $entityRoutePrefix = '/users/';
-
     $columns = [
         [
             'label' => __('user-management::user.Name'),
@@ -24,7 +22,7 @@
         ],
     ];
 
-    $gridview = new \KornerBI\SimpleTable\SimpleTable($columns, $data, $entityRoutePrefix);
+    $gridview = new \KornerBI\SimpleTable\SimpleTable($columns, $data, \App\User::ENTITY_ROUTE_PREFIX);
 @endphp
 @extends ('layouts.app')
 @section ('content')
@@ -32,7 +30,7 @@
         <div class="card-header">{{__('user-management::user.User list')}}</div>
         <div class="card-body">
             <div class="form-group form-row">
-                <a role="button" class="btn btn-primary btn-sm" href="{{ route('users.create') }}">{{__('user-management::general.Create')}}</a>
+                <a role="button" class="btn btn-primary btn-sm" href="{{ route(config('user-management.route-name').'users.create') }}">{{__('user-management::general.Create')}}</a>
             </div>
             <?= $gridview->render(); ?>
         </div>

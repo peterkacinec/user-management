@@ -1,12 +1,13 @@
 @extends ('layouts.app')
 @section ('content')
     <div class="form-group">
-        <form action="{{ route('roles.destroy', $role->id) }}" method="POST">
-            @method('DELETE')
-            @csrf
-            <a role="button" class="btn btn-primary btn-sm" href="{{ route('roles.edit', $role->id) }}">{{__('user-management::general.Edit')}}</a>
-            <button type="submit" class="btn btn-danger btn-sm">{{__('user-management::general.Delete')}}</button>
-        </form>
+        <a role="button" class="btn btn-primary btn-sm" href="{{ route(config('user-management.route-name').'roles.edit', $role->id) }}">{{__('user-management::general.Edit')}}</a>
+        <a href="javascript:;"
+           data-toggle="modal"
+           onclick="deleteData({{ route(config('user-management.route-name').'roles.destroy', $role->id) }})"
+           data-target="#DeleteModal"
+           class="btn btn-danger btn-sm"
+        >{{__('user-management::general.Delete')}}</a>
     </div>
     <div class="card">
         <div class="card-header">{{__('user-management::role.Title')}}</div>

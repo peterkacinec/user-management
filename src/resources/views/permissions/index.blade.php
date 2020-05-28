@@ -1,6 +1,4 @@
 @php
-    $entityRoutePrefix = '/permissions/';
-
     $columns = [
         [
             'label' => __('user-management::permission.Name'),
@@ -19,7 +17,7 @@
         ],
     ];
 
-    $gridview = new \KornerBI\SimpleTable\SimpleTable($columns, $data, $entityRoutePrefix);
+    $gridview = new \KornerBI\SimpleTable\SimpleTable($columns, $data, \KornerBI\UserManagement\Models\Permission::ENTITY_ROUTE_PREFIX);
 @endphp
 @extends ('layouts.app')
 @section ('content')
@@ -27,7 +25,7 @@
         <div class="card-header">{{__('user-management::permission.Permission list')}}</div>
         <div class="card-body">
             <div class="form-group form-row">
-                <a role="button" class="btn btn-primary btn-sm" href="{{ route('permissions.create') }}">{{__('user-management::general.Create')}}</a>
+                <a role="button" class="btn btn-primary btn-sm" href="{{ route(config('user-management.route-name').'permissions.create') }}">{{__('user-management::general.Create')}}</a>
             </div>
             <?= $gridview->render(); ?>
         </div>

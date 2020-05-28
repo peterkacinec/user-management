@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Permission extends Model
 {
+    const ENTITY_ROUTE_PREFIX = '/permissions/';
     /**
      * The attributes that are mass assignable.
      *

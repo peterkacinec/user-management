@@ -10,6 +10,9 @@ return [
     'Back' => 'Back',
     'Created at' => 'Created at',
     'Updated at' => 'Updated at',
+    'Cancel' => 'Cancel',
+    'Confirmation delete' => 'Are you sure?',
+    'Yes' => 'Yes',
 
     'Updated successfully' => 'Updated successfully',
     'Update failed' => 'Update failed',
