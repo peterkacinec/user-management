@@ -33,7 +33,7 @@ class PermissionController extends Controller
 
             if ($permission->save()) {
                 return redirect()
-                    ->route(config('user-management.route-name').'permissions.show', $permission->id)
+                    ->route(config('user-management.route-name-prefix').'permissions.show', $permission->id)
                     ->withSuccess(__('user-management::general.Created successfully'));
             }
         }
@@ -58,7 +58,7 @@ class PermissionController extends Controller
         $validator = $this->validator(request()->all());
         if (!$validator->fails() && $permission->update($validator->validated())) {
             return redirect()
-                ->route(config('user-management.route-name').'permissions.show', $permission->id)
+                ->route(config('user-management.route-name-prefix').'permissions.show', $permission->id)
                 ->withSuccess(__('user-management::general.Updated successfully'));
         }
         return back()
@@ -72,7 +72,7 @@ class PermissionController extends Controller
 
         if ($permission->delete()) {
             return redirect()
-                ->route(config('user-management.route-name').'permissions.index')
+                ->route(config('user-management.route-name-prefix').'permissions.index')
                 ->withSuccess(__('user-management::general.Deleted successfully', [
                     'name' => $permission->name,
                     'id' => $permission->id

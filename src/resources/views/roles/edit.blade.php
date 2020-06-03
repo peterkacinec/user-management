@@ -3,7 +3,7 @@
     <div class="card">
         <div class="card-header">{{__('user-management::role.Title')}}</div>
         <div class="card-body">
-            <form method="post" action="{{route(config('user-management.route-name').'roles.update', $role->id)}}">
+            <form method="post" action="{{route(config('user-management.route-name-prefix').'roles.update', $role->id)}}">
                 @csrf
                 @method('put')
                 @include('user-management::roles._form', [])

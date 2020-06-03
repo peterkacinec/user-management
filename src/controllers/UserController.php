@@ -38,7 +38,7 @@ class UserController extends Controller
                 $user->roles()->sync(request('roles'));
                 $user->permissions()->sync(request('permissions'));
                 return redirect()
-                    ->route(config('user-management.route-name').'users.show', $user->id)
+                    ->route(config('user-management.route-name-prefix').'users.show', $user->id)
                     ->withSuccess(__('user-management::general.Created successfully'));
             }
         }
@@ -80,7 +80,7 @@ class UserController extends Controller
 
             if ($user->save()) {
                 return redirect()
-                    ->route(config('user-management.route-name').'users.show', $user->id)
+                    ->route(config('user-management.route-name-prefix').'users.show', $user->id)
                     ->withSuccess(__('user-management::general.Updated successfully'));
             }
         }
@@ -101,7 +101,7 @@ class UserController extends Controller
 
             if ($user->update()) {
                 return redirect()
-                    ->route(config('user-management.route-name').'users.editProfile', $user->id)
+                    ->route(config('user-management.route-name-prefix').'users.editProfile', $user->id)
                     ->withSuccess(__('user-management::general.Updated successfully'));
             }
         }
@@ -117,7 +117,7 @@ class UserController extends Controller
         if ($user->delete())
         {
             return redirect()
-                ->route(config('user-management.route-name').'users.index')
+                ->route(config('user-management.route-name-prefix').'users.index')
                 ->withSuccess(__('user-management::general.Deleted successfully', [
                     'name'      => $user->name,
                     'surname'   => $user->surname,

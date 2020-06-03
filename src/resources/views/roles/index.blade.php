@@ -25,7 +25,7 @@
         <div class="card-header">{{__('user-management::role.Role list')}}</div>
         <div class="card-body">
             <div class="form-group form-row">
-                <a role="button" class="btn btn-primary btn-sm" href="{{ route(config('user-management.route-name').'roles.create') }}">{{__('user-management::general.Create')}}</a>
+                <a role="button" class="btn btn-primary btn-sm" href="{{ route(config('user-management.route-name-prefix').'roles.create') }}">{{__('user-management::general.Create')}}</a>
             </div>
             <?= $gridview->render(); ?>
         </div>

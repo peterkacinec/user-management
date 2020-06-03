@@ -2,7 +2,7 @@
 
 Route::prefix(config('user-management.route-prefix'))
     ->middleware(['web', 'auth'])
-    ->name(config('user-management.route-name'))
+    ->name(config('user-management.route-name-prefix'))
     ->group(function () {
         Route::resources([
             'users'         => 'KornerBI\UserManagement\Controllers\UserController',

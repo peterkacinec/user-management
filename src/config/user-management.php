@@ -2,5 +2,5 @@
 
 return [
     'route-prefix' => '',
-    'route-name' => ''
+    'route-name-prefix' => ''
 ];

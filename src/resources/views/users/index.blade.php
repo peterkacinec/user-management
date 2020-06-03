@@ -30,7 +30,7 @@
         <div class="card-header">{{__('user-management::user.User list')}}</div>
         <div class="card-body">
             <div class="form-group form-row">
-                <a role="button" class="btn btn-primary btn-sm" href="{{ route(config('user-management.route-name').'users.create') }}">{{__('user-management::general.Create')}}</a>
+                <a role="button" class="btn btn-primary btn-sm" href="{{ route(config('user-management.route-name-prefix').'users.create') }}">{{__('user-management::general.Create')}}</a>
             </div>
             <?= $gridview->render(); ?>
         </div>

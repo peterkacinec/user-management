@@ -3,7 +3,7 @@
     <div class="card">
         <div class="card-header">{{__('user-management::user.Title')}}</div>
         <div class="card-body">
-            <form method="post" action="{{route(config('user-management.route-name').'users.update', $user->id)}}">
+            <form method="post" action="{{route(config('user-management.route-name-prefix').'users.update', $user->id)}}">
                 @csrf
                 @method('put')
                 @include('user-management::users._form', ['dontRequiredPassword' => true])

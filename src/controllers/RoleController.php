@@ -33,7 +33,7 @@ class RoleController extends Controller
 
             if ($role->save()) {
                 return redirect()
-                    ->route(config('user-management.route-name').'roles.show', $role->id)
+                    ->route(config('user-management.route-name-prefix').'roles.show', $role->id)
                     ->withSuccess(__('user-management::general.Created successfully'));
             }
         }
@@ -58,7 +58,7 @@ class RoleController extends Controller
         $validator = $this->validator(request()->all());
         if (!$validator->fails() && $role->update($validator->validated())) {
             return redirect()
-                ->route(config('user-management.route-name').'roles.show', $role->id)
+                ->route(config('user-management.route-name-prefix').'roles.show', $role->id)
                 ->withSuccess(__('user-management::general.Updated successfully'));
         }
         return back()
@@ -72,7 +72,7 @@ class RoleController extends Controller
 
         if ($role->delete()) {
             return redirect()
-                ->route(config('user-management.route-name').'roles.index')
+                ->route(config('user-management.route-name-prefix').'roles.index')
                 ->withSuccess(__('user-management::general.Deleted successfully', [
                     'name' => $role->name,
                     'id' => $role->id

@@ -1,13 +1,23 @@
 @extends ('layouts.app')
 @section ('content')
+    @php
+        $actionDelete =[
+            'url' => url(config('simple-table.route-prefix').\KornerBI\UserManagement\Models\Permission::ENTITY_ROUTE_PREFIX.$permission->id),
+            'modalText' => __('simple-table::modal.Confirmation delete')
+        ];
+    @endphp
     <div class="form-group">
-        <a role="button" class="btn btn-primary btn-sm" href="{{ route(config('user-management.route-name').'permissions.edit', $permission->id) }}">{{__('user-management::general.Edit')}}</a>
-        <a href="javascript:;"
-           data-toggle="modal"
-           onclick='deleteData({{ route(config('user-management.route-name') . 'permissions.destroy', $permission->id) }})'
-           data-target="#DeleteModal"
-           class="btn btn-danger btn-sm"
-        >{{__('user-management::general.Delete')}}</a>
+        <a role="button" class="btn btn-primary btn-sm" href="{{ route(config('user-management.route-name-prefix').'permissions.edit', $permission->id) }}">{{__('user-management::general.Edit')}}</a>
+        <a
+            role="button"
+            href="#"
+            class = "btn btn-sm btn-danger"
+            data-toggle="modal"
+            data-target="#modalConfirm"
+        >{{ __('user-management::general.Delete') }}</a>
+        <modal-component
+                :config="{{ json_encode($actionDelete) }}">
+        </modal-component>
     </div>
     <div class="card">
         <div class="card-header">{{__('user-management::role.Title')}}</div>

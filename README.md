@@ -38,8 +38,11 @@ V cistej instalaci noveho projektu Laravel treba dodrzat tento postup:
 a v class User tiez `use HasPermissionsTrait;` a do pola `$fillable` doplnit atribut `surname`
 a este doplnit `const ENTITY_ROUTE_PREFIX = '/users/';`
 - publishnut config file z package: `php artisan vendor:publish --provider="KornerBI\UserManagement\UserManagementServiceProvider" --tag="config"`
-- spolu s user-management package sa nainstaluje aj zavislost na simple-table package, co je vlastne iba vue komponenta pre zobrazovanie zoznamu udajov.
-Komponentu je potrebne manualne nalinkovat pridanim riadku `Vue.component('simple-table-component', require('../../vendor/peterkacinec/simple-table/src/resources/js/components/SimpleTableComponent').default);` v subore `resources/js/app.js`
+- spolu s user-management package sa nainstaluje aj zavislost na simple-table package, co je vue komponenta pre zobrazovanie zoznamu udajov.
+- spolu s user-management package sa nainstaluje aj zavislost na modal-component package, co je vue komponenta pre zobrazovanie confirm modal pri DELETE action
+Komponenty je potrebne manualne nalinkovat pridanim riadkov: 
+`Vue.component('simple-table-component', require('../../vendor/peterkacinec/simple-table/src/resources/js/components/SimpleTableComponent').default);` v subore `resources/js/app.js`
+a `Vue.component('modal-component', require('../../vendor/peterkacinec/modal/src/ModalComponent').default);`
 - spustit prikaz `npm run dev` alebo `npm run watch`
 - `php artisan user:create` prikaz pre vytvorenie testovacieho usera
 
@@ -51,6 +54,9 @@ Po nainstalovani packagu sa spristupnia nasledovne routy:
 - /users/1/delete - vymazanie pouzivatela s ID=1
 
 To iste plati aj pre routy: `roles` a `permissions`
+
+V menu projektu ak pouzivate linky s routami, je potrebne doplnit `config('user-management.route-name-prefix')`
+Priklad: `<a class="nav-link" href="{{ route(config('user-management.route-name-prefix').'users.index') }}">{{ __('user-management::menu-item.Users') }}</a>`
 
 ## Versioning
 

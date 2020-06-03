@@ -3,7 +3,7 @@
     <div class="card">
         <div class="card-header">{{__('user-management::permission.Title')}}</div>
         <div class="card-body">
-            <form method="post" action="{{route(config('user-management.route-name').'permissions.update', $permission->id)}}">
+            <form method="post" action="{{route(config('user-management.route-name-prefix').'permissions.update', $permission->id)}}">
                 @csrf
                 @method('put')
                 @include('user-management::permissions._form', [])
