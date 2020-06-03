@@ -37,11 +37,12 @@ V cistej instalaci noveho projektu Laravel treba dodrzat tento postup:
 - do `app/User.php` modelu doplnit manualne `use KornerBI\UserManagement\Permissions\HasPermissionsTrait;` 
 a v class User tiez `use HasPermissionsTrait;` a do pola `$fillable` doplnit atribut `surname`
 a este doplnit `const ENTITY_ROUTE_PREFIX = '/users/';`
-- publishnut config file z package: `php artisan vendor:publish --provider="KornerBI\UserManagement\UserManagementServiceProvider" --tag="config"`
-- spolu s user-management package sa nainstaluje aj zavislost na simple-table package, co je vue komponenta pre zobrazovanie zoznamu udajov.
-- spolu s user-management package sa nainstaluje aj zavislost na modal-component package, co je vue komponenta pre zobrazovanie confirm modal pri DELETE action
-Komponenty je potrebne manualne nalinkovat pridanim riadkov: 
-`Vue.component('simple-table-component', require('../../vendor/peterkacinec/simple-table/src/resources/js/components/SimpleTableComponent').default);` v subore `resources/js/app.js`
+- publishnut config file z package `user-management`: `php artisan vendor:publish --provider="KornerBI\UserManagement\UserManagementServiceProvider" --tag="config"`
+- publishnut config file z package `simple-table`: `php artisan vendor:publish --provider="KornerBI\SimpleTable\SimpleTableServiceProvider" --tag="config"`
+- publishnut assety z package `simple-table` (ikonky buttonov z material icons) `php artisan vendor:publish --tag=public --force`
+- spolu s user-management package sa nainstaluju aj zavislosti/package: `simple-table` a `modal`. Su to vue komponenty pre zobrazovanie zoznamu udajov a zobrazovanie confirm modal pri DELETE action
+- Komponenty je potrebne manualne nalinkovat v subore `resources/js/app.js`: 
+`Vue.component('simple-table-component', require('../../vendor/peterkacinec/simple-table/src/resources/js/components/SimpleTableComponent').default);` 
 a `Vue.component('modal-component', require('../../vendor/peterkacinec/modal/src/ModalComponent').default);`
 - spustit prikaz `npm run dev` alebo `npm run watch`
 - `php artisan user:create` prikaz pre vytvorenie testovacieho usera
