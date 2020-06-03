@@ -22,7 +22,7 @@
         }
     ],
     "require": {
-        "peterkacinec/simple-table": "@dev"
+        "peterkacinec/simple-table": "dev-master"
     },
     "extra": {
         "laravel": {
