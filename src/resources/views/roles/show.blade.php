@@ -3,7 +3,7 @@
     @php
         $actionDelete =[
             'url' => url(config('simple-table.route-prefix').\KornerBI\UserManagement\Models\Role::ENTITY_ROUTE_PREFIX.$role->id),
-            'modalText' => __('simple-table::modal.Confirmation delete')
+            'modalText' => __('user-management::general.Confirmation delete')
         ];
     @endphp
     <div class="form-group">
@@ -32,6 +32,16 @@
                 <label for="surname" class="col-sm-2 col-form-label">{{__('user-management::role.Slug')}}</label>
                 <div class="col-sm-10">
                     <input class="form-control" type="text" name="slug" value="{{ $role->slug }}" disabled/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="permissions" class="col-sm-2 col-form-label">{{__('user-management::role.Permissions')}}</label>
+                <div class="col-sm-10">
+                    <select multiple class="form-control" name="permissions[]" id="permissions" disabled>
+                        @foreach($role->permissionList() as $permission)
+                            <option value="{{ $permission->id }}" @foreach($role->permissions as $selectedPermission) @if($selectedPermission->id == $permission->id)selected="selected"@endif @endforeach>{{ $permission->name }}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
             <div class="form-group row">

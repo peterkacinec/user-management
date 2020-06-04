@@ -3,7 +3,7 @@
     @php
         $actionDelete =[
             'url' => url(config('simple-table.route-prefix').\App\User::ENTITY_ROUTE_PREFIX.$user->id),
-            'modalText' => __('simple-table::modal.Confirmation delete')
+            'modalText' => __('user-management::general.Confirmation delete')
         ];
     @endphp
     <div class="form-group">

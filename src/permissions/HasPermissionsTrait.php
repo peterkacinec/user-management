@@ -62,7 +62,7 @@ trait HasPermissionsTrait {
     {
         return Role::all();
     }
-    public function PermissionList()
+    public function permissionList()
     {
         return Permission::all();
     }

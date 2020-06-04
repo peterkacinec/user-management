@@ -16,3 +16,14 @@
         @enderror
     </div>
 </div>
+<div class="form-group row">
+    <label for="permissions" class="col-sm-2 col-form-label">{{__('user-management::role.Permissions')}}</label>
+    <div class="col-sm-10">
+        <select multiple class="form-control" name="permissions[]" id="permissions">
+            @foreach($role->permissionList() as $permission)
+                <option value="{{ $permission->id }}" @foreach($role->permissions as $selectedPermission) @if($selectedPermission->id == $permission->id)selected="selected"@endif @endforeach>{{ $permission->name }}</option>
+            @endforeach
+        </select>
+    </div>
+</div>
+

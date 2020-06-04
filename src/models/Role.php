@@ -3,9 +3,12 @@
 namespace KornerBI\UserManagement\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use KornerBI\UserManagement\Permissions\HasPermissionsTrait;
 
 class Role extends Model
 {
+    use HasPermissionsTrait;
+
     const ENTITY_ROUTE_PREFIX = '/roles/';
     /**
      * The attributes that are mass assignable.

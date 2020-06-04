@@ -12,6 +12,14 @@
     {
         "type": "vcs",
         "url": "https://github.com/peterkacinec/user-management"
+    },
+    {
+        "type": "vcs",
+        "url": "https://github.com/peterkacinec/simple-table"
+    },
+    {
+        "type": "vcs",
+        "url": "https://github.com/peterkacinec/modal"
     }
 ],
 ```

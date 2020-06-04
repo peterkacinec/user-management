@@ -16,7 +16,8 @@ class RoleController extends Controller
 
     public function create()
     {
-        return view('user-management::roles.create');
+        $role = new Role();
+        return view('user-management::roles.create', ['role' => $role]);
     }
 
     /**
@@ -32,6 +33,7 @@ class RoleController extends Controller
             $role = new Role($validator->validated());
 
             if ($role->save()) {
+                $role->permissions()->sync(request('permissions'));
                 return redirect()
                     ->route(config('user-management.route-name-prefix').'roles.show', $role->id)
                     ->withSuccess(__('user-management::general.Created successfully'));
@@ -57,6 +59,7 @@ class RoleController extends Controller
     {
         $validator = $this->validator(request()->all());
         if (!$validator->fails() && $role->update($validator->validated())) {
+            $role->permissions()->sync(request('permissions'));
             return redirect()
                 ->route(config('user-management.route-name-prefix').'roles.show', $role->id)
                 ->withSuccess(__('user-management::general.Updated successfully'));

@@ -13,6 +13,5 @@
                 </div>
             </form>
         </div>
-        <simple-table-component></simple-table-component>
     </div>
 @endsection
